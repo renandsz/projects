@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GolemGame/Scenes/MainMenu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/GolemGame/Scenes/FaseSidescroller1.unity
+    guid: 649c80604ee6fb54fbcfdc927fa5d6ce
   m_configObjects: {}
