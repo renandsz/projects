@@ -29,36 +29,45 @@ public class CustomLook : MonoBehaviour
         switch (mode)
         {
             case LookMode.inputRaw:
-                RotateToInputRaw();
+                CalcAngleFromInputRaw();
                 break;
             case LookMode.input:
-                RotateToInput();
+                CalcAngleFromInput();
                 break;
             case LookMode.target:
-                RotateToTarget();
+                CalcAngleFromTargetObj();
                 break;
             case LookMode.mouse:
-                RotateToMouse();
+                CalcAngleFromMousePos();
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
+        
+        SelfRotate();
     }
 
-    private void RotateToInputRaw()
+    private void CalcAngleFromInputRaw()
     {
-        angle = Mathf.Atan2(yRaw, xRaw) * Mathf.Deg2Rad;
+        angle = Mathf.Atan2(yRaw, xRaw) * Mathf.Rad2Deg;
     }
-    private void RotateToInput()
+    private void CalcAngleFromInput()
     {
-        angle = Mathf.Atan2(yRaw, xRaw) * Mathf.Deg2Rad;
+        angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
     }
-    private void RotateToTarget()
+    private void CalcAngleFromTargetObj()
     {
-        angle = Mathf.Atan2(yRaw, xRaw) * Mathf.Deg2Rad;
+        Vector2 dir = (transform.position - target.position).normalized
+        angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
     }
-    private void RotateToMouse()
+    private void CalcAngleFromMousePos()
     {
-        angle = Mathf.Atan2(yRaw, xRaw) * Mathf.Deg2Rad;
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 dir = (transform.position - mousePos).normalized
+        angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;}
+
+    void SelfRotate()
+    {
+        transform.rotation = Quaternion.Euler(0,0,angle);
     }
 }
