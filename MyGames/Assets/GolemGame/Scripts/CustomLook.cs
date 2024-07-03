@@ -57,13 +57,13 @@ public class CustomLook : MonoBehaviour
     }
     private void CalcAngleFromTargetObj()
     {
-        Vector2 dir = (transform.position - target.position).normalized
+        Vector2 dir = (transform.position - target.position).normalized;
         angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
     }
     private void CalcAngleFromMousePos()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 dir = (transform.position - mousePos).normalized
+        Vector2 dir = (transform.position - mousePos).normalized;
         angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;}
 
     void SelfRotate()
